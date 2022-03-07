@@ -35,7 +35,6 @@ public class JpaMain {
             // 그런데 실무에서 하다보면 편하게 조회하고, JPQL 작성하기 위해 양방향으로 설계할 일이 많이 생긴다
             // 핵심 : 단방향 연관관계를 잘 설계하는 것이 중요하다
 
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
@@ -44,4 +43,5 @@ public class JpaMain {
         }
         emf.close();
     }
+
 }
