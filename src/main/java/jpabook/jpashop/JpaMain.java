@@ -1,5 +1,8 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,6 +19,23 @@ public class JpaMain {
         tx.begin();
 
         try {
+            // 양방향 연관관계
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
+
+            // 단방향 연관관계
+//            Order order = new Order();
+//            em.persist(order);
+//
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setOrder(order);
+//            em.persist(orderItem);
+
+            // 되도록이면 단방향 연관관계로 설계하는 걸 추천 - APP 문제 없이 동작함
+            // 그런데 실무에서 하다보면 편하게 조회하고, JPQL 작성하기 위해 양방향으로 설계할 일이 많이 생긴다
+            // 핵심 : 단방향 연관관계를 잘 설계하는 것이 중요하다
+
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
