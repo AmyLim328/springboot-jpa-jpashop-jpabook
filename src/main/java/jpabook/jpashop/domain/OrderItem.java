@@ -2,6 +2,9 @@ package jpabook.jpashop.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class OrderItem extends BaseEntity {
 
@@ -10,11 +13,11 @@ public class OrderItem extends BaseEntity {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY, cascade = ALL)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY, cascade = ALL)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
