@@ -12,9 +12,9 @@ public class Member extends BaseEntity {
     @Column(name = "MEMBER_ID") // 대문자 or 소문자 : 각자 회사의 rule에 따르면 된다
     private Long id;
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address address;
 
     @OneToMany(mappedBy = "member") // 연관관계의 주인은 member
     private List<Order> orders = new ArrayList<>(); // JPA/hibernate 관례 상 ArrayList로 초기화하는 걸 많이 사용 // NullPointerException 방지하는 등의 여러가지 장점이 있음
@@ -38,27 +38,19 @@ public class Member extends BaseEntity {
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getStreet() {
-        return street;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
